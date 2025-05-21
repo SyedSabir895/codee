@@ -65,7 +65,7 @@ export default function AboutUs() {
             <FaLinkedin />
           </a>
           <a
-            href=""
+            href="https://www.instagram.com/chotu_syed_/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white text-2xl hover:text-gray-300"
