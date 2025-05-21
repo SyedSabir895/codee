@@ -1,0 +1,23 @@
+.chatbot-btn {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    background-color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hover effect */
+.chatbot-btn:hover {
+    background-color: #4ac089;
+}
+
