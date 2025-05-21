@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PlaylistSuggestions from "./PlaylistSuggestions";
+import PlaylistSuggestions from "./PlayListSuggestions.jsx";
 import { CheckCircle } from "lucide-react";
 import Compiler from "./Compiler"; // Import Compiler component
 
