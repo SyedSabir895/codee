@@ -4,10 +4,16 @@ import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
   const [isRegister, setIsRegister] = useState(true);
-  const [formData, setFormData] = useState({ fullName: "", email: "", password: "" });
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [userName, setUserName] = useState(localStorage.getItem("userName") || "");
+  const [userName, setUserName] = useState(
+    localStorage.getItem("userName") || ""
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,9 +31,13 @@ const AuthPage = () => {
     setError("");
 
     try {
-      const url = `http://localhost:5000/api/auth/${isRegister ? "register" : "login"}`;
+      const url = `http://localhost:5000/api/auth/${
+        isRegister ? "register" : "login"
+      }`;
       const { fullName, email, password } = formData;
-      const payload = isRegister ? { fullName, email, password } : { email, password };
+      const payload = isRegister
+        ? { fullName, email, password }
+        : { email, password };
 
       const response = await axios.post(url, payload);
 
@@ -35,6 +45,16 @@ const AuthPage = () => {
         localStorage.setItem("userName", response.data.user.fullName);
         setUserName(response.data.user.fullName);
         alert(response.data.message);
+        try {
+          const dataRes = await axios.get(
+            "https://codeeback.onrender.com/api/data"
+          );
+          console.log("Fetched data:", dataRes.data);
+          // Optionally store it in state or context
+        } catch (err) {
+          console.error("Failed to fetch data:", err);
+        }
+
         navigate("/");
       }
     } catch (error) {
@@ -51,13 +71,17 @@ const AuthPage = () => {
         <div className="w-1/2 p-8">
           <div className="flex justify-between border-b pb-2">
             <button
-              className={`text-lg font-semibold ${isRegister ? "border-b-2 border-blue-500" : "text-gray-400"}`}
+              className={`text-lg font-semibold ${
+                isRegister ? "border-b-2 border-blue-500" : "text-gray-400"
+              }`}
               onClick={() => setIsRegister(true)}
             >
               Register
             </button>
             <button
-              className={`text-lg font-semibold ${!isRegister ? "border-b-2 border-blue-500" : "text-gray-400"}`}
+              className={`text-lg font-semibold ${
+                !isRegister ? "border-b-2 border-blue-500" : "text-gray-400"
+              }`}
               onClick={() => setIsRegister(false)}
             >
               Log in
@@ -103,7 +127,11 @@ const AuthPage = () => {
               className="w-full py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 disabled:bg-gray-400"
               disabled={loading}
             >
-              {loading ? "Processing..." : isRegister ? "Create Account" : "Log in"}
+              {loading
+                ? "Processing..."
+                : isRegister
+                ? "Create Account"
+                : "Log in"}
             </button>
           </form>
 
@@ -129,7 +157,9 @@ const AuthPage = () => {
 
         {/* Right Section */}
         <div className="w-1/2 bg-gradient-to-br from-blue-500 to-blue-700 text-white flex flex-col justify-center items-center p-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">Unlock your Coding Journey</h2>
+          <h2 className="text-3xl font-bold mb-4">
+            Unlock your Coding Journey
+          </h2>
           <ul className="text-lg space-y-2">
             <li className="flex items-center">
               <span className="mr-2">💻</span> Practice-Driven
